@@ -1,5 +1,6 @@
 import requests
 
+
 class PetstoreApiClient:
 
     def __init__(self,
@@ -18,5 +19,10 @@ class PetstoreApiClient:
 
     def create_pet(self, data):
         response = self.session.post(f"{self.base_url}/pet",
+                                     json=data)
+        return response
+
+    def create_user(self, data):
+        response = self.session.post(f"{self.base_url}/user",
                                      json=data)
         return response
