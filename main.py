@@ -1,16 +1,20 @@
-import requests
+from allpairspy import AllPairs
 
-session = requests.Session()
-
-session.headers = {"Authorization": "special-key"}
-session.verify = False
-
-session.get("https://petstore.swagger.io/v2/pet/findByStatus")
-response = session.post("https://petstore.swagger.io/v2/pet", json={
-        "name": "doggie",
-        "photoUrls": []
-    })
-print(response.text)
+data = [
+    ["DELL", "ACER", "ASUS", "HP"],
+    ["WIN7", "XP", "WIN10", "Linux"],
+    ["AMD", "INTEL", "ARM"],
+]
 
 
+def is_valid_combination(row):
+    if len(row) > 1:
+        if row[0] == "DELL" and row[1] == "XP":
+            return False
+    return True
 
+
+pairwised_result = list(AllPairs(data))
+
+for item in pairwised_result:
+    print(item)
